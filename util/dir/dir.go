@@ -24,7 +24,6 @@ func MakeDir(dirPath string) error {
 	if !IsExist(dirPath) {
 		return os.MkdirAll(dirPath, 0755)
 	}
-
 	return nil
 }
 
@@ -37,7 +36,6 @@ func GetFilePath(file string) string {
 	if stat, err := os.Stat(file); err == nil && stat.IsDir() {
 		return file
 	}
-
 	return filepath.Dir(file)
 }
 
