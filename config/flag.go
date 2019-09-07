@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fingerprintClient/util/dir"
 	"flag"
 	"fmt"
 	"os"
@@ -10,10 +11,13 @@ import (
 var (
 	file    string
 	test    bool
-	Debug   bool
 	daemon  bool
 	help    bool
 	version bool
+
+	Debug   bool
+	RunDir  string
+	RootDir string
 )
 
 func init() {
@@ -24,6 +28,9 @@ func init() {
 	flag.BoolVar(&help, "h", false, "Print Usage")
 	flag.BoolVar(&version, "v", false, "Print version information and quit")
 	flag.Usage = usage
+
+	RunDir = dir.GetPwd()
+	RootDir = dir.GetParentDir(RunDir, 1)
 }
 
 func InitFlag() {

@@ -1,8 +1,10 @@
 package dir
 
 import (
+	"fingerprintClient/util/str"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 /**
@@ -51,4 +53,31 @@ func GetAllFilesByDir(dir string) []string {
 		return nil
 	}
 	return files
+}
+
+/**
+ *	获取当前目录
+ *	@return string
+ */
+func GetPwd() string {
+	dir, err := os.Getwd()
+	if err == nil {
+		return strings.Replace(dir, "\\", "/", -1)
+	}
+	return ""
+}
+
+/**
+ *	获取指定目录的多级父目录
+ *	@param string dir
+ *	@param int index 父目录级数
+ *	@return string
+ */
+func GetParentDir(dir string, index int) string {
+	if index < 1 {
+		return dir
+	}
+	// 去掉目录末尾的 ‘/’
+	dir = strings.TrimRight(dir, "/")
+	return GetParentDir(str.Substr(dir, 0, strings.LastIndex(dir, "/")), index-1)
 }
