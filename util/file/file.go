@@ -39,3 +39,4 @@ func FileMd5(fileName string) (string, error) {
 	}
 	return hex.EncodeToString(md5.Sum(nil)), nil
 }
+
