@@ -10,4 +10,3 @@ build:
 
 clean:
 	@rm -rf ./bin/*
-	@go clean

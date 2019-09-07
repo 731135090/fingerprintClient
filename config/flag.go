@@ -17,7 +17,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&file, "f", "./glide.yaml", "Location of client config file")
+	flag.StringVar(&file, "f", "./config.yaml", "Location of client config file")
 	flag.BoolVar(&test, "t", false, "Test config file")
 	flag.BoolVar(&Debug, "D", false, "Enable debug mode")
 	flag.BoolVar(&daemon, "d", false, "Run client in background")
