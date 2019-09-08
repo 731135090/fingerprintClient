@@ -4,8 +4,10 @@ import (
 	"bufio"
 	"crypto/md5"
 	"encoding/hex"
+	"errors"
 	"io"
 	"os"
+	"runtime"
 )
 
 /**
@@ -40,3 +42,13 @@ func FileMd5(fileName string) (string, error) {
 	return hex.EncodeToString(md5.Sum(nil)), nil
 }
 
+/**
+ * 当前文件
+ */
+func CurrentFile() string {
+	_, file, _, ok := runtime.Caller(1)
+	if !ok {
+		panic(errors.New("Can not get current file info"))
+	}
+	return file
+}

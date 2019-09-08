@@ -17,14 +17,13 @@ var (
 
 	Project  string
 	RunLevel string
-	RunDir   string
 	RootDir  string
 
 	ProjectBaseDir string
 )
 
 func init() {
-	flag.StringVar(&file, "f", "./config.yaml", "Location of client config file")
+	flag.StringVar(&file, "f", "", "Location of client config file")
 	flag.StringVar(&Project, "p", "test", "Run project")
 	flag.BoolVar(&test, "t", false, "Test config file")
 	flag.StringVar(&RunLevel, "l", "", "Enable debug mode")
@@ -33,8 +32,7 @@ func init() {
 	flag.BoolVar(&version, "v", false, "Print version information and quit")
 	flag.Usage = usage
 
-	RunDir = dir.GetPwd()
-	RootDir = dir.GetParentDir(RunDir, 1)
+	RootDir = dir.GetPwd()
 }
 
 func InitFlag() {

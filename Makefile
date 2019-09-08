@@ -6,7 +6,7 @@ LDFLAGS += -X "fingerprintClient/config.GitStatus=$(shell if git status | grep -
 all: build
 
 build:
-	@go build -ldflags '$(LDFLAGS)' -o ./bin/fp_client ./main/server.go
+	@go build -ldflags '$(LDFLAGS)' -o ./main/fp_client ./main/server.go
 
 clean:
-	@rm -rf ./bin/*
+	@rm -rf ./main/fp_client
