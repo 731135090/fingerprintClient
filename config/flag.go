@@ -4,8 +4,8 @@ import (
 	"fingerprintClient/util/dir"
 	"flag"
 	"fmt"
+	"github.com/spf13/viper"
 	"os"
-	"path/filepath"
 )
 
 var (
@@ -15,15 +15,19 @@ var (
 	help    bool
 	version bool
 
-	Debug   bool
-	RunDir  string
-	RootDir string
+	Project  string
+	RunLevel string
+	RunDir   string
+	RootDir  string
+
+	ProjectBaseDir string
 )
 
 func init() {
 	flag.StringVar(&file, "f", "./config.yaml", "Location of client config file")
+	flag.StringVar(&Project, "p", "test", "Run project")
 	flag.BoolVar(&test, "t", false, "Test config file")
-	flag.BoolVar(&Debug, "D", false, "Enable debug mode")
+	flag.StringVar(&RunLevel, "l", "", "Enable debug mode")
 	flag.BoolVar(&daemon, "d", false, "Run client in background")
 	flag.BoolVar(&help, "h", false, "Print Usage")
 	flag.BoolVar(&version, "v", false, "Print version information and quit")
@@ -49,16 +53,19 @@ func InitFlag() {
 }
 
 func checkConfigFile() {
-	absConfigFile, err := filepath.Abs(file)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+	viper.SetConfigName("config")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath(fmt.Sprintf("%s/conf/%s/", RootDir, Project))
+	err := viper.ReadInConfig() // Find and read the config file
+	if err != nil {             // Handle errors reading the config file
+		panic(fmt.Errorf("Fatal error config file: %s \n", err))
 	}
-	if _, err = os.Stat(absConfigFile); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+
+
+	if RunLevel == "" {
+		RunLevel = viper.GetString("run_level")
 	}
-	// todo 解析配置文件
+	ProjectBaseDir = viper.GetString("project_base_dir")
 }
 
 func usage() {

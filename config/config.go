@@ -21,7 +21,7 @@ func InitConfig() {
 		os.Exit(1)
 	}
 
-	if Debug {
-		fmt.Printf("RootPath: %s", RootPath)
+	if RunLevel != RUN_LEVEL_RELEASE {
+		fmt.Printf("RootPath: %s\n", RootPath)
 	}
 }
