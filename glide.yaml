@@ -2,3 +2,5 @@ package: fingerprintClient
 import:
 - package: github.com/pkg/errors
   version: v0.8.1
+- package: github.com/spf13/viper
+  version: v1.3.1
