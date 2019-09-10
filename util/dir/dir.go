@@ -56,7 +56,7 @@ func GetAllFilesByDir(dir string) []string {
 }
 
 /**
- *	获取当前目录
+ *	获取当前根目录
  *	@return string
  */
 func GetPwd() string {

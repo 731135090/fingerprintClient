@@ -1,4 +1,7 @@
 # 开发测试配置文件
 run_level: debug               # 开发模式, debug, release, test,
 project_base_dir: /opt/case/test   #监控项目目录
-
+server:
+  base: http://127.0.0.1:9678
+  config: /config
+  report: /report

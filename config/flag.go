@@ -1,10 +1,8 @@
 package config
 
 import (
-	"fingerprintClient/util/dir"
 	"flag"
 	"fmt"
-	"github.com/spf13/viper"
 	"os"
 )
 
@@ -17,9 +15,6 @@ var (
 
 	Project  string
 	RunLevel string
-	RootDir  string
-
-	ProjectBaseDir string
 )
 
 func init() {
@@ -31,8 +26,6 @@ func init() {
 	flag.BoolVar(&help, "h", false, "Print Usage")
 	flag.BoolVar(&version, "v", false, "Print version information and quit")
 	flag.Usage = usage
-
-	RootDir = dir.GetPwd()
 }
 
 func InitFlag() {
@@ -46,29 +39,11 @@ func InitFlag() {
 		ShowVersion()
 		os.Exit(0)
 	}
-	// 检查是否有配置文件
-	checkConfigFile()
-}
-
-func checkConfigFile() {
-	viper.SetConfigName("config")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath(fmt.Sprintf("%s/conf/%s/", RootDir, Project))
-	err := viper.ReadInConfig() // Find and read the config file
-	if err != nil {             // Handle errors reading the config file
-		panic(fmt.Errorf("Fatal error config file: %s \n", err))
-	}
-
-
-	if RunLevel == "" {
-		RunLevel = viper.GetString("run_level")
-	}
-	ProjectBaseDir = viper.GetString("project_base_dir")
 }
 
 func usage() {
 	fmt.Fprintf(os.Stderr, `fpClient
-Usage: fpClient [-hv] [-f filename] [-d daemon] [-D debug]
+Usage: fpClient [-hv] [-ft filename] [-d daemon]
 
 Options:
 `)
