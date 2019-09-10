@@ -1,5 +1,5 @@
-hash: 9f5a93c6e2844946a5f289b98a7856db41538be101ad93dd07f21b68bbd01524
-updated: 2019-09-08T19:01:08.999173+08:00
+hash: 1aeeda065d532502cd82862abae2c60f2af49df63cd15bda260d94d5eac83d4c
+updated: 2019-09-10T19:56:20.476135+08:00
 imports:
 - name: github.com/fsnotify/fsnotify
   version: 1485a34d5d5723fea214f5710708e19a831720e4
@@ -23,6 +23,8 @@ imports:
   version: 4d5afd743f6d97abcf808b942735e5596f2bbd6c
 - name: github.com/pkg/errors
   version: ba968bfe8b2f7e042a574c888954fccecfa385b4
+- name: github.com/sirupsen/logrus
+  version: dae0fa8d5b0c810a8ab733fbd5510c7cae84eca4
 - name: github.com/spf13/afero
   version: 588a75ec4f32903aa5e39a2619ba6a4631e28424
   subpackages:
